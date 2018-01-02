@@ -12,25 +12,18 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 
 /**
- * ENTENDIENDO EL API SERVLET PATER I
+ * ENTENDIENDO SERVLET API PARTE II
  * @author barcvilla
  */
-@WebServlet(name = "MyServlet", urlPatterns = {"/MyServlet"})
-public class MyServlet implements Servlet
+@WebServlet(name = "ServletConfigDemo", urlPatterns = {"/ServletConfigDemo"}, initParams = {
+@WebInitParam(name="admin", value = "Harry Taciak"), @WebInitParam(name = "email", value = "admin@Example.com")})
+public class ServletConfigDemoServlet implements Servlet 
 {
-    /**
-     * el contenedor de servlet pasa un ServletConfig al metodo init del servlet
-     */
     private transient ServletConfig servletConfig;
-    
-    @Override
-    public void init(ServletConfig servletConfig) throws ServletException
-    {
-        this.servletConfig = servletConfig;
-    }
     
     @Override
     public ServletConfig getServletConfig()
@@ -39,26 +32,37 @@ public class MyServlet implements Servlet
     }
     
     @Override
-    public String getServletInfo()
+    public void init(ServletConfig servletConfig)
     {
-        return "My Servlet";
+        this.servletConfig = servletConfig;
     }
     
     @Override
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException
     {
-        String servletName = servletConfig.getServletName();
+        ServletConfig servletConfig = getServletConfig();
+        String admin = servletConfig.getInitParameter("admin");
+        String email = servletConfig.getInitParameter("email");
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         writer.print("<!DOCTYPE html>"
         + "<html>"
-        + "<body>Hello from: !" + servletName
+        + "<body>"
+        + "Admin:" + admin
+        + "<br/>Email: " + email
         + "</body>"
         + "</html>");
     }
     
     @Override
+    public String getServletInfo()
+    {
+        return "ServletConfig Demo";
+    }
+    
+    @Override
     public void destroy()
     {
+        
     }
 }
