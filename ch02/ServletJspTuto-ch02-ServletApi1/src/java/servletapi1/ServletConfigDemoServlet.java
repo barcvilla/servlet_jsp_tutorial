@@ -19,8 +19,15 @@ import javax.servlet.annotation.WebServlet;
  * ENTENDIENDO SERVLET API PARTE II
  * @author barcvilla
  */
-@WebServlet(name = "ServletConfigDemo", urlPatterns = {"/ServletConfigDemo"}, initParams = {
-@WebInitParam(name="admin", value = "Harry Taciak"), @WebInitParam(name = "email", value = "admin@Example.com")})
+@WebServlet
+(
+        name = "ServletConfigDemo", urlPatterns = {"/ServletConfigDemo"}, 
+        initParams = 
+                {
+                    @WebInitParam(name="admin", value = "Harry Taciak"), 
+                    @WebInitParam(name = "email", value = "admin@Example.com")
+                }
+)
 public class ServletConfigDemoServlet implements Servlet 
 {
     private transient ServletConfig servletConfig;
@@ -31,6 +38,12 @@ public class ServletConfigDemoServlet implements Servlet
         return servletConfig;
     }
     
+    /**
+     * pasamos un servlet config cuando el servlet container incializa el servlet
+     * El ServletConfig encapsula la informacion de configuracion que pasamos al servlet a traves de @WebServlet
+     * o en el deployment descriptor.
+     * @param servletConfig 
+     */
     @Override
     public void init(ServletConfig servletConfig)
     {
@@ -41,6 +54,7 @@ public class ServletConfigDemoServlet implements Servlet
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException
     {
         ServletConfig servletConfig = getServletConfig();
+        // recuperamos los valores dl Initial Parameter
         String admin = servletConfig.getInitParameter("admin");
         String email = servletConfig.getInitParameter("email");
         response.setContentType("text/html");
