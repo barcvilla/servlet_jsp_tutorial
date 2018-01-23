@@ -27,6 +27,7 @@ public class FormServlet extends HttpServlet
     private static final long serialVersionUID = 54L;
     private static final String TITLE = "Order Form";
     
+    // Metodo ejecutado en el Servlet. El metodo doGet envia este formulario html al browser
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -37,6 +38,8 @@ public class FormServlet extends HttpServlet
         writer.println("<head>");
         writer.println("<title>" + TITLE + "</title></head>");
         writer.println("<body><h1>" + TITLE + "</h1>");
+        // el metodo del formulario se configura a 'post' para asegurarse que el metodo HTTP Post y es usado cuando el
+        // usuario somete el formulario.
         writer.println("<form method='post'>");
         writer.println("<table>");
         writer.println("<tr>");
@@ -91,6 +94,7 @@ public class FormServlet extends HttpServlet
         writer.println("</html>");       
     }
     
+    // metodo que envia el servidor.
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
