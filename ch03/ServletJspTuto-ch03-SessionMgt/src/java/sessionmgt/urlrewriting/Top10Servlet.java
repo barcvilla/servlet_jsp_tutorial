@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * 
  * @author barcvilla
  */
 @WebServlet
@@ -31,6 +31,11 @@ public class Top10Servlet extends HttpServlet
     private List<String> londonAttractions = new ArrayList<String>(10);
     private List<String> parisAttractions = new ArrayList<String>(10);
     
+    /**
+     * Este metodo se invoca una vez cuando el primer usuario solicita el servlet, rellena dos List
+     * londonAttractions y parisAttractions, con diez sitios turisticos cada uno.
+     * @throws ServletException 
+     */
     @Override
     public void init() throws ServletException
     {
@@ -57,10 +62,20 @@ public class Top10Servlet extends HttpServlet
         parisAttractions.add("Sacre Couer Basilica");       
     }
     
+    /**
+     * Este metodo se invoca en cada solicitud (se hace click en algun enlace), comprueba si la url contiene el parametro
+     * de solicitud city y si su valor es "london" o "paris". segun el valor de este parametro
+     * el metodo llama a showAttractions o showMainPage
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String city = request.getParameter("city");
+        /**
+         * Preguntar por "london".equals(city) es mucho mejor que preguntar por city.equals("london")
+         * Ya que le primero no lanzara un NullPounterException si city es null. De lo cobtrario debemos probar
+         * si city es null antes de llamar al metodo equals en city
+         */
         if ("london".equals(city) || "paris".equals(city)) {
             // show attractions
             showAttractions(request, response, city);
@@ -72,6 +87,14 @@ public class Top10Servlet extends HttpServlet
         }
     }
     
+    /**
+     * Inicialmente el cliente llama al servlet sin un parametro de solicitud y se invocara el metodo
+     * showMainPage. Este metodo envia dos hipervinculos al navegador, cada uno con una ciudad token 
+     * incrustada = cityName. Al hacer click en alguno de los links se arma las sigtes ulr's
+     * http://localhost:8080/ServletJspTuto-ch03-SessionMgt/top10?city=london
+     * http://localhost:8080/ServletJspTuto-ch03-SessionMgt/top10?city=paris
+     * seran enviados al servidor.
+     */
     private void showMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         response.setContentType("text/html");
