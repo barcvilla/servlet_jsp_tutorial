@@ -20,7 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * /products : Muestra todos los productos
+ * /viewProductsDetails : Muestra los detalles del producto
+ * /addToCart : Adiciona un producto al carrito de compras
+ * /viewCart : Muestra el contenido del carrito de compras.
+ * Todas las URL's excepto /addToCart invocan el metodo doGet de la clase ShoppingCartServlet
+ * que empieza verificando las solicitudes URI y genera contenido acorde.
+ * http://localhost:8080/ServletJspTuto-ch03-SessionMgt/products invoca la pagina principal de la app.
  * @author barcvilla
  */
 @WebServlet
@@ -58,10 +64,13 @@ public class ShoppingCartServlet extends HttpServlet
         for (Product product : products) {
             writer.println("<li>" + product.getName() + "("
                     + currencyFormat.format(product.getPrice())
-                    + ") (" + "<a href='viewProductDetails?id="
+                    /* al hacer click en el link Details, el metodo doGet nos enviara los detalles del
+                       producto seleccionado y veremos la pagina de detalles del producto.*/
+                    + ") (" + "<a href='viewProductsDetails?id="
                     + product.getId() + "'>Details</a>)");
         }
         writer.println("</ul>");
+        /*Al hacer click View Cart, se invoca nuevamente al metodo doGet y el metodo llama al metodo showCart*/
         writer.println("<a href='viewCart'>View Cart</a>");
         writer.println("</body></html>");
     }    
@@ -101,6 +110,8 @@ public class ShoppingCartServlet extends HttpServlet
                     + product.getDescription() + "</td></tr>");
             writer.println("<tr>" + "<tr>"
                     + "<td><input name='quantity'/></td>"
+                    /*Al hacer click en el boton Buy, el formulario buy en la pagina product details invoca
+                      el metodo doPost. Esto es donde un producto es adicionado al HttpSession del usuario.*/
                     + "<td><input type='submit' value='Buy'/>"
                     + "</td>"
                     + "</tr>");
@@ -123,9 +134,12 @@ public class ShoppingCartServlet extends HttpServlet
                 + "<style>table, td {border:1px solid green;}</style>"
                 + "</head>");
         writer.println("<body><a href='products'>" + "Product List</a>");
+        /* recuperamos el HttpSession del usuario y llama al metodo getAttribute para obtener la lista de 
+           ShoppingList items*/
         HttpSession session = request.getSession();
         List<ShoppingItem> cart = (List<ShoppingItem>) session
                 .getAttribute(CART_ATTRIBUTE);
+        // Iteramos sobre la lista y enviamos el contenido de cada item en el broswer.
         if (cart != null) {
             writer.println("<table>");
             writer.println("<tr><td style='width:150px'>Quantity"
@@ -172,7 +186,7 @@ public class ShoppingCartServlet extends HttpServlet
         String uri = request.getRequestURI();
         if (uri.endsWith("/products")) {
             sendProductList(response);
-        } else if (uri.endsWith("/viewProductDetails")) {
+        } else if (uri.endsWith("/viewProductsDetails")) {
             sendProductDetails(request, response);
         } else if (uri.endsWith("viewCart")) {
             showCart(request, response);
@@ -195,16 +209,21 @@ public class ShoppingCartServlet extends HttpServlet
 
         Product product = getProduct(productId);
         if (product != null && quantity >= 0) {
+            // construimos el ShoppingItem basado en la cantidad y el product objeto seleccionado por el usuario.
             ShoppingItem shoppingItem = new ShoppingItem(product,
                     quantity);
+            /*Recuperamos el HttpSession del usuario y verifica si ya contiene una List asociada con el
+              atributo cart*/
             HttpSession session = request.getSession();
             List<ShoppingItem> cart = (List<ShoppingItem>) session
                     .getAttribute(CART_ATTRIBUTE);
+            /*Si List es encontrada, la List sera usado al ShoppingItem. Si List no se encuentra, una
+              sera creada y adicionada al HttpSession*/
             if (cart == null) {
                 cart = new ArrayList<ShoppingItem>();
                 session.setAttribute(CART_ATTRIBUTE, cart);
             }
-            cart.add(shoppingItem);
+            cart.add(shoppingItem); // finalmente, ShoppingItem es adicionado a la List
         }
         sendProductList(response);
     }
