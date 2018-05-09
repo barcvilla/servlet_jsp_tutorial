@@ -74,9 +74,34 @@
         <p>Map: ${["ottawa", "beijing", "paris", "berlin"].stream().map(x -> x.toUpperCase()).toList()}</p>
         <p>Filter: ${["Lima", "Beijing", "Paris", "Berlin"].stream().filter(x -> x.startsWith("B")).toList()}</p>
         <p>
+            Fomatted list:
             <ul>
-                ${["Ottawa", "Beijing", "Paris", "Berlin"].stream().map(x -> "--><li>"+=x+="</li><!--").toList()}
+               <!--${["Ottawa", "Beijing", "Paris", "Berlin"].stream().map(x -> "--><li>"+=x+="</li><!--").toList()}-->
             </ul>
+        </p>
+       
+        <p>
+            Another way of Formatted list:
+            <table>
+                <tr>
+                    <th>
+                        Street
+                    </th>
+                    <th>
+                        City
+                    </th>
+                </tr>
+                <!--
+                    ${["Lima", "Beijing", "Paris", "Berlin"].stream().map(a -> 
+                      "-->
+                      <tr>
+                        <td>
+                            "+=a+="
+                        </td>
+                      </tr>
+                      <!--").toList()}
+                -->
+            </table>
         </p>
         
     </body>
