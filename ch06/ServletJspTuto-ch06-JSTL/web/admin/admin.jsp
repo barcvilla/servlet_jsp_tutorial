@@ -1,6 +1,6 @@
 <%-- 
-    Document   : main
-    Created on : 09/05/2018, 12:51:53
+    Document   : admin
+    Created on : 16/05/2018, 10:41:49
     Author     : PC
 --%>
 
@@ -9,19 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Main Page</title>
+        <title>Admin</title>
         <style>
             img{width: 200px;}
         </style>
     </head>
     <body>
-        <h2>Main Page</h2>
-        <%@include file="include/inc1.jsp"%>
+        <h2>Admin</h2>
+        <%@include file="../include/inc1.jsp"%>
         <hr/>
-        <%@include file="include/inc2.jsp"%>
+        <%@include file="../include/inc2.jsp"%>
         <hr/>
-        <%@include file="include/inc3.jsp"%>
+        <%@include file="../include/inc3.jsp"%>
         <hr/>
-        <%@include file="include/inc4.jsp"%>
+        <%@include file="../include/inc4.jsp"%>
     </body>
 </html>
