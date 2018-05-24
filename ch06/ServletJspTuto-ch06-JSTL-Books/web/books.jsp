@@ -41,7 +41,9 @@
         ISBNs only:<br/>
         <c:forEach items="${requestScope.books}" var="book" varStatus="status">
             ${book.isbn}
-            <c:if test="${!status.last}"></c:if>
+            <c:if test="${!status.last}">
+                
+            </c:if>
             <br/>
         </c:forEach>
         <br/>
