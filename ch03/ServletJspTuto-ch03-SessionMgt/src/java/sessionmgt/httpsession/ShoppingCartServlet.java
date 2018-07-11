@@ -137,8 +137,7 @@ public class ShoppingCartServlet extends HttpServlet
         /* recuperamos el HttpSession del usuario y llama al metodo getAttribute para obtener la lista de 
            ShoppingList items*/
         HttpSession session = request.getSession();
-        List<ShoppingItem> cart = (List<ShoppingItem>) session
-                .getAttribute(CART_ATTRIBUTE);
+        List<ShoppingItem> cart = (List<ShoppingItem>) session.getAttribute(CART_ATTRIBUTE);
         // Iteramos sobre la lista y enviamos el contenido de cada item en el broswer.
         if (cart != null) {
             writer.println("<table>");
@@ -210,13 +209,11 @@ public class ShoppingCartServlet extends HttpServlet
         Product product = getProduct(productId);
         if (product != null && quantity >= 0) {
             // construimos el ShoppingItem basado en la cantidad y el product objeto seleccionado por el usuario.
-            ShoppingItem shoppingItem = new ShoppingItem(product,
-                    quantity);
+            ShoppingItem shoppingItem = new ShoppingItem(product,quantity);
             /*Recuperamos el HttpSession del usuario y verifica si ya contiene una List asociada con el
               atributo cart*/
             HttpSession session = request.getSession();
-            List<ShoppingItem> cart = (List<ShoppingItem>) session
-                    .getAttribute(CART_ATTRIBUTE);
+            List<ShoppingItem> cart = (List<ShoppingItem>) session.getAttribute(CART_ATTRIBUTE);
             /*Si List es encontrada, la List sera usado al ShoppingItem. Si List no se encuentra, una
               sera creada y adicionada al HttpSession*/
             if (cart == null) {
