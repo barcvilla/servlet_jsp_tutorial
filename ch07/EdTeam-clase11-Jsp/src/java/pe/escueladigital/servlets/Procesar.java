@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.escueladigital.utilidades.Utilidades;
 
 /**
  *
@@ -54,9 +55,11 @@ public class Procesar extends HttpServlet {
         request.setAttribute("respuesta", c);
         
         /*indicamos a que jsp enviar la respuesta*/
-        RequestDispatcher despachador = getServletContext().getRequestDispatcher("/respuestasumar.jsp");
+        //RequestDispatcher despachador = getServletContext().getRequestDispatcher("/respuestasumar.jsp");
         //RequestDispatcher despachador = request.getRequestDispatcher("/respuestasumar.jsp");
-        despachador.forward(request, response);
+        //despachador.forward(request, response);
+        Utilidades.irAPagina(request, response, getServletContext(), "/respuestasumar.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

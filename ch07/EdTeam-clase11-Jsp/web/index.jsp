@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,7 +51,7 @@
         <div><%= c %></div>
 
         <!--@include nos permite incluir paginas estaticas (html puro)-->
-        <%@include file="WEB-INF/partials-static/footer.html" %>
+        <%@include file="WEB-INF/partials-static/footer.jsp" %>
 
     </body>
 </html>

@@ -32,6 +32,6 @@
             <jsp:param name="pagina" value="nosotros"></jsp:param>
         </jsp:include>        
         <h1>Aqui explicamos quienes somos</h1>
-        <%@include file="WEB-INF/partials-static/footer.html" %>
+        <%@include file="WEB-INF/partials-static/footer.jsp" %>
     </body>
 </html>
