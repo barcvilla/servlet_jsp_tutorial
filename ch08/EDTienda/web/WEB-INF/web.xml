@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	 version="3.1">
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    <context-param>
+        <param-name>servidor</param-name>
+        <param-value>127.0.0.1</param-value>
+    </context-param>
+    <context-param>
+        <param-name>puerto</param-name>
+        <param-value>5432</param-value>
+    </context-param>
+    <context-param>
+        <param-name>basededatos</param-name>
+        <param-value>edtienda</param-value>
+    </context-param>
+    <context-param>
+        <param-name>usuario</param-name>
+        <param-value>edtienda</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>edtienda</param-value>
+    </context-param>
+
+</web-app>
