@@ -1,5 +1,5 @@
 <%
-    String item = request.getParameter("item");
+    String item = request.getParameter("item"); //item es la clase selected css que se pasa como parametro
 %>
 <header class="l-header">
     <div class="ed-container">
@@ -11,10 +11,10 @@
             <nav id="menu" class="menu-container">
                 <div id="close-menu" class="icon-close hasta-web"></div>
                 <ul class="ed-menu web-horizontal">
-                    <li><a href="/ProyectoFinalJava/" class="<% out.print(item.equals("inicio")?"selected":""); %>">inicio</a></li>
-                    <li><a href="/ProyectoFinalJava/nosotros.jsp" class="<% out.print(item.equals("nosotros")?"selected":""); %>">nosotros</a></li>
-                    <li><a href="/ProyectoFinalJava/productos" class="<% out.print(item.equals("productos")?"selected":""); %>">productos</a></li>
-                    <li><a href="/ProyectoFinalJava/carro.jsp" class="<% out.print(item.equals("carro")?"selected":""); %>">mi carro</a></li>
+                    <li><a href="/EDTienda/" class="<% out.print(item.equals("inicio")?"selected":""); %>">inicio</a></li>
+                    <li><a href="/EDTienda/nosotros.jsp" class="<% out.print(item.equals("nosotros")?"selected":""); %>">nosotros</a></li>
+                    <li><a href="/EDTienda/productos" class="<% out.print(item.equals("productos")?"selected":""); %>">productos</a></li>
+                    <li><a href="/EDTienda/carro.jsp" class="<% out.print(item.equals("carro")?"selected":""); %>">mi carro</a></li>
                 </ul>
             </nav>
         </div>
