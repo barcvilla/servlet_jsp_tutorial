@@ -31,8 +31,8 @@ public class MyListener implements ServletContextListener {
         propiedadesConexion.setProperty("servidor", servidor);
         propiedadesConexion.setProperty("puerto", puerto);
         propiedadesConexion.setProperty("basededatos", basededatos);
-        propiedadesConexion.setProperty("usuariobd", usuariobd);
-        propiedadesConexion.setProperty("passwordbd", passwordbd);
+        propiedadesConexion.setProperty("usuario", usuariobd);
+        propiedadesConexion.setProperty("password", passwordbd);
         
         // Llamamos al metodo configuraBaseDeDatos() de la unica instancia que existe de Utilidades
         Utilidades.getInstancia().configuraBaseDeDatos(propiedadesConexion);
