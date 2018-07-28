@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Redireccionamiento Servlets</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Ejemplo de Redireccionamiento</h1>
+        <a href="/EjemploRedireccionamiento/RedireccionamientoServlet">Link al Servlet</a>
+        <br/>
+        <a href="/EjemploRedireccionamiento/RecursoNoExistente">Link a un recurso no existente</a>
+        <fieldset>
+            <legend>Formulario de Actualizaci&oacute;</legend>
+            <form name="form1" action="/EjemploRedireccionamiento/FormularioServlet" method="POST">
+                Usuario: <input type="text" name="usuario"><br/><br/>
+                Password: <input type="password" name="password"><br/><br/>
+                <input type="submit" value="Enviar"/>
+            </form>
+        </fieldset>
+    </body>
+</html>
