@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : beansJSTL
+    Created on : 03/08/2018, 14:45:24
+    Author     : PC
+-->
+<jsp:root 
+    xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <head>
+        <title>JavaBeans y JSTL</title>
+    </head>
+    <body>
+        <h1>Iterando una lista de JavaBeans de tipo Rectangulo</h1>
+        <!--Creamos dos objetos de tipo Rectangulo-->
+        <jsp:useBean id="rec1" class="beans.Rectangulo" >
+            <!--especificamos el valor a nuestras propiedades del objeto rectangulo-->
+            <c:set target="${rec1}" property="base" value="2" />
+            <c:set target="${rec1}" property="altura" value="4" />
+        </jsp:useBean>
+
+        <jsp:useBean id="rec2" class="beans.Rectangulo">
+            <c:set target="${rec2}" property="base" value="3" />
+            <c:set target="${rec2}" property="altura" value="5" />
+        </jsp:useBean>
+        <!--Creamos y llenamos el arreglo rectangulos que es una lista de la clase ListaRectangulos y sera tratado como un JavaBean-->
+        <jsp:useBean id="rectangulos" class="beans.ListaRectangulos" >
+            <c:set target="${rectangulos}" property="rectangulo" value="${rec1}" />
+            <c:set target="${rectangulos}" property="rectangulo" value="${rec2}" />
+        </jsp:useBean>
+        <!--Despliegue de la informacion-->
+        <ul>
+            <c:forEach varStatus="status" var="rectangulo" items="${rectangulos.lista}">
+                <li>
+                    Rectangulo: ${status.count} - 
+                    Base: ${rectangulo.base}
+                    Altura: ${rectangulo.altura}
+                </li>
+            </c:forEach>
+        </ul>
+        <br/>
+        <a href="index.jsp">Regresar al inicio</a>
+    </body>
+</jsp:root>
